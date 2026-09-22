@@ -1,0 +1,4 @@
+company,title,jd_text
+ByteDance,AI Agent Engineer,"负责 AI Agent 应用开发，熟悉 LangChain、LangGraph、Workflow、Python、FastAPI、Docker，做过 RAG、数据分析助手优先，了解 Transformer、LoRA、SFT。"
+KnowledgeBase Inc.,RAG Engineer,"负责企业文档智能问答系统，熟悉 RAG、Milvus、Reranker、引用校验、低置信拒答、Python、FastAPI、MySQL、Redis。"
+StartupX,AI Frontend Application Engineer,"负责 AI 应用前端开发，熟悉 Vue3、React、TypeScript、WebSocket、用户体验设计，有 RAG 或 Agent 产品经验加分。"

@@ -15,6 +15,7 @@ class WorkflowTest(unittest.TestCase):
             self.assertTrue((output_dir / "match_report.md").exists())
             self.assertTrue((output_dir / "match_report.json").exists())
             self.assertTrue((output_dir / "interview_questions.md").exists())
+            self.assertTrue((output_dir / "resume_tailoring.md").exists())
 
     def test_csv_loader_supported(self):
         with TemporaryDirectory() as temp_dir:

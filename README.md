@@ -30,6 +30,7 @@ JobFit Agent 用一个可解释的多阶段工作流解决这个问题。
 - `reports/match_report.md`：人类可读岗位匹配报告
 - `reports/match_report.json`：结构化结果，方便二次开发
 - `reports/interview_questions.md`：按岗位生成的面试准备问题
+- `reports/resume_tailoring.md`：基于事实证据的简历优化建议
 
 ### 3. Agent 工作流
 
@@ -95,7 +96,7 @@ ReportAgent
 - [x] Markdown / JSON reports
 - [x] HTML snapshot import
 - [ ] Optional LLM-enhanced parsing
-- [ ] Fact-grounded resume rewriting
+- [x] Fact-grounded resume tailoring suggestions
 - [ ] Streamlit web UI
 - [ ] Optional crawler adapter for public career pages
 
@@ -154,3 +155,14 @@ python3 -m src.jobfit_agent.cli rank \
   --jobs examples/html_jobs \
   --output reports
 ```
+
+## 事实约束简历优化
+
+JobFit Agent 会生成 `reports/resume_tailoring.md`，但它遵守一个原则：**只基于原简历证据优化表达，不编造经历**。
+
+报告会列出：
+
+- 当前岗位最应该突出的能力
+- 可基于原文证据强化的项目表达
+- 不建议声称的缺失能力点
+- 面试前需要准备的数据和案例

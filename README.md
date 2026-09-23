@@ -48,6 +48,9 @@ JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-fi
 ## Documentation
 
 - [Demo](docs/demo.md)
+- [Sample Match Report](docs/examples/sample_match_report.md)
+- [Sample Resume Tailoring](docs/examples/sample_resume_tailoring.md)
+- [Sample Interview Questions](docs/examples/sample_interview_questions.md)
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
 - [Data Connectors](docs/data_connectors.md)
@@ -114,6 +117,12 @@ Console output:
 ```
 
 Generated files:
+
+See sample outputs:
+
+- [Sample Match Report](docs/examples/sample_match_report.md)
+- [Sample Resume Tailoring](docs/examples/sample_resume_tailoring.md)
+- [Sample Interview Questions](docs/examples/sample_interview_questions.md)
 
 ```text
 reports/

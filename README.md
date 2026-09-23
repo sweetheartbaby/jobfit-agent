@@ -57,6 +57,17 @@ JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-fi
 
 ## Quick Start
 
+### Try the built-in sample
+
+```bash
+git clone https://github.com/sweetheartbaby/jobfit-agent.git
+cd jobfit-agent
+
+PYTHONPATH=src python3 -m jobfit_agent.cli sample --output reports
+```
+
+Then open `reports/match_report.html` in your browser.
+
 ### Option 1: Run without installation
 
 ```bash
@@ -82,6 +93,9 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
 
+jobfit sample --output reports
+
+# or analyze your own data
 jobfit rank \
   --resume examples/resume.md \
   --jobs examples/jobs \

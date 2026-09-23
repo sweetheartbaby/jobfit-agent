@@ -21,6 +21,14 @@ Job seekers often collect many job descriptions but struggle to decide which rol
 
 JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-first decision assistant for job matching and interview preparation.
 
+## Use Cases
+
+- Rank saved job descriptions before applying
+- Compare AI Agent, RAG, backend, and frontend AI roles
+- Prepare interview questions based on skill gaps
+- Tailor resume wording without inventing experience
+- Convert crawler or spreadsheet job data into a standard analysis pipeline
+
 ## Features
 
 - Local-first resume and JD analysis
@@ -43,6 +51,9 @@ JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-fi
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
 - [Data Connectors](docs/data_connectors.md)
+- [Resume Project Write-up](docs/resume_project_writeup.md)
+- [Limitations](docs/limitations.md)
+- [Changelog](CHANGELOG.md)
 
 ## Quick Start
 
@@ -265,6 +276,15 @@ It lists:
 - Evidence-based rewrite drafts
 - Missing keywords that should not be claimed unless true
 - Evidence to prepare before interviews
+
+## Limitations
+
+- Rule-based matching may miss semantic matches.
+- HTML snapshot parsing may include noisy text.
+- LLM-enhanced parsing is optional and depends on user configuration.
+- Fit scores are decision support, not hiring predictions.
+
+See [Limitations](docs/limitations.md) for details.
 
 ## Compliance Notice
 

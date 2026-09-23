@@ -4,6 +4,31 @@
 
 > MVP 目标：不做海投、不依赖招聘网站登录、不上传隐私简历；先把“哪个岗位最适合我”这件事做稳。
 
+<p align="center">
+  <b>Rank job descriptions by resume fit. Get evidence-based gaps, interview questions, and resume tailoring suggestions.</b>
+</p>
+
+![Tests](https://github.com/sweetheartbaby/jobfit-agent/actions/workflows/test.yml/badge.svg)
+
+## Features
+
+- Local-first resume and JD analysis
+- Batch ranking for multiple jobs
+- Local `.md` / `.txt` job input
+- CSV job input
+- HTML job snapshot input
+- Evidence-based matching explanations
+- Skill gap analysis
+- Interview preparation questions
+- Fact-grounded resume tailoring suggestions
+- Optional OpenAI-compatible LLM parsing with JSON repair and rule fallback
+
+## Documentation
+
+- [Demo](docs/demo.md)
+- [Architecture](docs/architecture.md)
+- [Roadmap](docs/roadmap.md)
+
 ## MVP 方案
 
 ### 1. 用户问题

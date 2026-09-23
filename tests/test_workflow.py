@@ -25,6 +25,13 @@ class WorkflowTest(unittest.TestCase):
             self.assertEqual(len(reports), 3)
 
 
+    def test_jsonl_loader_supported(self):
+        with TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "reports"
+            reports = JobFitWorkflow().run("examples/resume.md", "examples/jobs.jsonl", str(output_dir))
+            self.assertEqual(len(reports), 2)
+
+
     def test_html_snapshot_loader_supported(self):
         with TemporaryDirectory() as temp_dir:
             output_dir = Path(temp_dir) / "reports"

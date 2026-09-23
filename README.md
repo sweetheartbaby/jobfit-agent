@@ -27,6 +27,7 @@ JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-fi
 - Batch ranking for multiple jobs
 - Local `.md` / `.txt` job input
 - CSV job input
+- JSONL job input for crawler/export pipelines
 - HTML job snapshot input
 - Evidence-based matching explanations
 - Skill gap analysis
@@ -41,6 +42,7 @@ JobFit Agent is **not** an auto-apply or mass-application tool. It is a local-fi
 - [Demo](docs/demo.md)
 - [Architecture](docs/architecture.md)
 - [Roadmap](docs/roadmap.md)
+- [Data Connectors](docs/data_connectors.md)
 
 ## Quick Start
 
@@ -137,7 +139,24 @@ PYTHONPATH=src python3 -m jobfit_agent.cli rank \
   --output reports
 ```
 
-### 3. HTML snapshots
+### 3. JSONL jobs
+
+JSONL is recommended for crawler/export pipelines:
+
+```json
+{"company":"ByteDance","title":"AI Agent Engineer","jd_text":"负责 AI Agent 应用开发..."}
+```
+
+Run:
+
+```bash
+PYTHONPATH=src python3 -m jobfit_agent.cli rank \
+  --resume examples/resume.md \
+  --jobs examples/jobs.jsonl \
+  --output reports
+```
+
+### 4. HTML snapshots
 
 Save a job detail page as `.html`, then run:
 
@@ -256,3 +275,7 @@ JobFit Agent only analyzes resumes and job descriptions provided by the user. It
 You can describe this project like this:
 
 > Designed and implemented JobFit Agent, a local-first job matching assistant that ranks multiple job descriptions against a resume and generates evidence-based match reports, skill gap analysis, interview questions, and fact-grounded resume tailoring suggestions. The system uses a multi-stage Agent workflow with JD parsing, resume parsing, evidence matching, fit scoring, gap analysis, and report generation, with JSON repair and rule-based fallback for robust optional LLM parsing.
+
+## MediaCrawler Adapter
+
+JobFit Agent does not directly depend on MediaCrawler. Instead, it provides a JSONL import format and an adapter under `integrations/mediacrawler/` for converting authorized crawler output into JobFit-compatible job data. See [Data Connectors](docs/data_connectors.md).

@@ -1,0 +1,2 @@
+{"job_id":"agent-001","company":"ByteDance","title":"AI Agent Engineer","location":"Beijing","salary":"25k-45k","jd_text":"负责 AI Agent 应用开发，熟悉 LangGraph、LangChain、Tool Calling、RAG、Python、FastAPI、Docker；能够设计重试、降级、人工复核和效果评估。"}
+{"job_id":"rag-001","company":"KnowledgeBase Inc.","title":"RAG Engineer","location":"Shanghai","salary":"20k-35k","jd_text":"负责企业知识库 RAG 系统，熟悉 Milvus、向量检索、Reranker、引用校验、低置信拒答、MySQL、Redis 和 API 服务开发。"}

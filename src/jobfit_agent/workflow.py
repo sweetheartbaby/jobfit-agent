@@ -12,6 +12,7 @@ from .agents.scorer import FitScoringAgent
 from .connectors.local_files import JobLoaderAgent
 from .connectors.csv_loader import CSVJobLoader
 from .connectors.html_snapshot import HTMLSnapshotLoader
+from .connectors.jsonl_loader import JSONLJobLoader
 from .schemas import JobMatchReport
 from .tools.text_utils import read_text
 from .config import load_config, dimensions_from_config
@@ -43,6 +44,8 @@ class JobFitWorkflow:
         source = str(jobs_dir).lower()
         if source.endswith(".csv"):
             jobs = CSVJobLoader().load(jobs_dir)
+        elif source.endswith(".jsonl"):
+            jobs = JSONLJobLoader().load(jobs_dir)
         elif Path(jobs_dir).is_dir() and any(p.suffix.lower() in {".html", ".htm"} for p in Path(jobs_dir).iterdir()):
             jobs = HTMLSnapshotLoader().load(jobs_dir)
         else:

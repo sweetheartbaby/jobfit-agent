@@ -54,6 +54,7 @@ JobFit Agent 用一个可解释的多阶段工作流解决这个问题。
 
 - `reports/match_report.md`：人类可读岗位匹配报告
 - `reports/match_report.json`：结构化结果，方便二次开发
+- `reports/match_report.html`：更适合浏览器查看的可视化报告
 - `reports/interview_questions.md`：按岗位生成的面试准备问题
 - `reports/resume_tailoring.md`：基于事实证据的简历优化建议
 
@@ -233,3 +234,7 @@ PYTHONPATH=src python3 -m jobfit_agent.cli rank \
 ```
 
 示例配置见 `examples/jobfit.yaml`。
+
+## HTML 报告
+
+每次运行都会额外生成 `reports/match_report.html`，可以直接用浏览器打开查看岗位排序、分维度评分、简历证据、能力缺口和简历建议。

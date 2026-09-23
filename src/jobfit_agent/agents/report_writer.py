@@ -4,6 +4,7 @@ from typing import List
 
 from ..schemas import JobMatchReport
 from .resume_tailoring import ResumeTailoringAgent
+from .html_report import HTMLReportAgent
 
 
 class ReportAgent:
@@ -18,6 +19,7 @@ class ReportAgent:
         (out / "match_report.md").write_text(self._markdown(sorted_reports), encoding="utf-8")
         (out / "interview_questions.md").write_text(self._questions(sorted_reports), encoding="utf-8")
         (out / "resume_tailoring.md").write_text(ResumeTailoringAgent().generate(sorted_reports), encoding="utf-8")
+        (out / "match_report.html").write_text(HTMLReportAgent().generate(sorted_reports), encoding="utf-8")
 
     def _markdown(self, reports: List[JobMatchReport]) -> str:
         lines = ["# JobFit Match Report", "", self._top_summary(reports), "", "## Overall Ranking", ""]

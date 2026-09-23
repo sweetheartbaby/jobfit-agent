@@ -10,6 +10,7 @@ from .agents.resume_parser import ResumeParserAgent
 from .agents.scorer import FitScoringAgent
 from .connectors.local_files import JobLoaderAgent
 from .connectors.csv_loader import CSVJobLoader
+from .connectors.html_snapshot import HTMLSnapshotLoader
 from .schemas import JobMatchReport
 from .tools.text_utils import read_text
 
@@ -28,8 +29,11 @@ class JobFitWorkflow:
     def run(self, resume_path: str, jobs_dir: str, output_dir: str) -> List[JobMatchReport]:
         resume_text = read_text(Path(resume_path))
         resume_profile = self.resume_parser.parse(resume_text)
-        if str(jobs_dir).lower().endswith(".csv"):
+        source = str(jobs_dir).lower()
+        if source.endswith(".csv"):
             jobs = CSVJobLoader().load(jobs_dir)
+        elif Path(jobs_dir).is_dir() and any(p.suffix.lower() in {".html", ".htm"} for p in Path(jobs_dir).iterdir()):
+            jobs = HTMLSnapshotLoader().load(jobs_dir)
         else:
             jobs = self.loader.load(jobs_dir)
         reports = []

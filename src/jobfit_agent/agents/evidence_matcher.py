@@ -19,6 +19,8 @@ class EvidenceMatcherAgent:
                 score = len(matched) / len(required)
             results.append(RequirementMatch(
                 dimension=dimension.name,
+                label=dimension.label,
+                weight=dimension.weight,
                 required_keywords=required,
                 matched_keywords=matched,
                 missing_keywords=missing,

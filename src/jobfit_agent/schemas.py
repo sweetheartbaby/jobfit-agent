@@ -14,6 +14,8 @@ class Job:
 @dataclass
 class RequirementMatch:
     dimension: str
+    label: str
+    weight: float
     required_keywords: List[str]
     matched_keywords: List[str]
     missing_keywords: List[str]
@@ -33,5 +35,4 @@ class JobMatchReport:
     need_manual_review: bool
 
     def to_dict(self) -> Dict:
-        data = asdict(self)
-        return data
+        return asdict(self)

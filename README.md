@@ -93,7 +93,7 @@ ReportAgent
 - [x] CSV job import
 - [x] Evidence-based fit scoring
 - [x] Markdown / JSON reports
-- [ ] HTML snapshot import
+- [x] HTML snapshot import
 - [ ] Optional LLM-enhanced parsing
 - [ ] Fact-grounded resume rewriting
 - [ ] Streamlit web UI
@@ -143,3 +143,14 @@ python3 -m src.jobfit_agent.cli rank \
 ## 合规说明
 
 JobFit Agent 默认只分析用户主动提供的简历和岗位 JD。本项目不鼓励绕过访问控制、采集非公开数据或违反平台服务条款；后续可选采集器仅应用于公开页面或用户有权限访问的数据。
+
+## HTML 快照导入
+
+把招聘页面另存为 `.html` 文件后放入目录：
+
+```bash
+python3 -m src.jobfit_agent.cli rank \
+  --resume examples/resume.md \
+  --jobs examples/html_jobs \
+  --output reports
+```

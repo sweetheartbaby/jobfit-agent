@@ -23,5 +23,12 @@ class WorkflowTest(unittest.TestCase):
             self.assertEqual(len(reports), 3)
 
 
+    def test_html_snapshot_loader_supported(self):
+        with TemporaryDirectory() as temp_dir:
+            output_dir = Path(temp_dir) / "reports"
+            reports = JobFitWorkflow().run("examples/resume.md", "examples/html_jobs", str(output_dir))
+            self.assertEqual(len(reports), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

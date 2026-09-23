@@ -2,7 +2,7 @@ import unittest
 from tempfile import TemporaryDirectory
 from pathlib import Path
 
-from src.jobfit_agent.workflow import JobFitWorkflow
+from jobfit_agent.workflow import JobFitWorkflow
 
 
 class WorkflowTest(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from src.jobfit_agent.llm import repair_json, merge_keywords
+from jobfit_agent.llm import repair_json, merge_keywords
 
 
 class LLMUtilityTest(unittest.TestCase):

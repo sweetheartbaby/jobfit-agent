@@ -129,9 +129,22 @@ ReportAgent
 
 当前 MVP 无第三方依赖，Python 3.9+ 可直接运行。
 
+### 方式一：本地开发安装
+
 ```bash
 cd jobfit-agent
-python3 -m src.jobfit_agent.cli rank \
+pip install -e .
+jobfit rank \
+  --resume examples/resume.md \
+  --jobs examples/jobs \
+  --output reports
+```
+
+### 方式二：不安装直接运行
+
+```bash
+cd jobfit-agent
+PYTHONPATH=src python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/jobs \
   --output reports
@@ -160,7 +173,7 @@ python3 -m src.jobfit_agent.cli rank \
 ## CSV 导入
 
 ```bash
-python3 -m src.jobfit_agent.cli rank \
+python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/jobs.csv \
   --output reports
@@ -175,7 +188,7 @@ JobFit Agent 默认只分析用户主动提供的简历和岗位 JD。本项目�
 把招聘页面另存为 `.html` 文件后放入目录：
 
 ```bash
-python3 -m src.jobfit_agent.cli rank \
+python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/html_jobs \
   --output reports
@@ -198,7 +211,7 @@ JobFit Agent 会生成 `reports/resume_tailoring.md`，但它遵守一个原则�
 
 ```bash
 export OPENAI_API_KEY=your_api_key
-python3 -m src.jobfit_agent.cli rank \
+python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/jobs \
   --output reports \

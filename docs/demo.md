@@ -5,7 +5,7 @@ This demo shows how JobFit Agent ranks multiple job descriptions against a local
 ## Run
 
 ```bash
-python3 -m src.jobfit_agent.cli rank \
+PYTHONPATH=src python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/jobs \
   --output reports
@@ -62,7 +62,7 @@ ByteDance,AI Agent Engineer,"负责 AI Agent 应用开发..."
 Save a job detail page as `.html`, then run:
 
 ```bash
-python3 -m src.jobfit_agent.cli rank \
+PYTHONPATH=src python3 -m jobfit_agent.cli rank \
   --resume examples/resume.md \
   --jobs examples/html_jobs \
   --output reports

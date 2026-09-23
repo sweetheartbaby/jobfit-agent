@@ -10,10 +10,12 @@ def main():
     rank.add_argument("--resume", required=True, help="Path to resume markdown/txt file")
     rank.add_argument("--jobs", required=True, help="Directory containing job description files")
     rank.add_argument("--output", default="reports", help="Output directory")
+    rank.add_argument("--llm", default=None, help="Optional OpenAI-compatible model name, e.g. gpt-4o-mini")
+    rank.add_argument("--llm-base-url", default=None, help="Optional OpenAI-compatible base URL")
     args = parser.parse_args()
 
     if args.command == "rank":
-        reports = JobFitWorkflow().run(args.resume, args.jobs, args.output)
+        reports = JobFitWorkflow().run(args.resume, args.jobs, args.output, llm_model=args.llm, llm_base_url=args.llm_base_url)
         for i, report in enumerate(reports, 1):
             print(f"{i}. {report.job.title} ({report.job.company}) - {report.fit_score} - {report.recommendation}")
 

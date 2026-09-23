@@ -5,6 +5,7 @@ from .agents.evidence_matcher import EvidenceMatcherAgent
 from .agents.gap_analyzer import GapAnalyzerAgent
 from .agents.interview_prep import InterviewPrepAgent
 from .agents.jd_parser import JDParserAgent
+from .agents.llm_parser import LLMParserAgent
 from .agents.report_writer import ReportAgent
 from .agents.resume_parser import ResumeParserAgent
 from .agents.scorer import FitScoringAgent
@@ -26,9 +27,12 @@ class JobFitWorkflow:
         self.interview = InterviewPrepAgent()
         self.reporter = ReportAgent()
 
-    def run(self, resume_path: str, jobs_dir: str, output_dir: str) -> List[JobMatchReport]:
+    def run(self, resume_path: str, jobs_dir: str, output_dir: str, llm_model: str = None, llm_base_url: str = None) -> List[JobMatchReport]:
         resume_text = read_text(Path(resume_path))
         resume_profile = self.resume_parser.parse(resume_text)
+        llm_parser = LLMParserAgent(llm_model, llm_base_url) if llm_model else None
+        if llm_parser:
+            resume_profile = llm_parser.enhance(resume_text, resume_profile)
         source = str(jobs_dir).lower()
         if source.endswith(".csv"):
             jobs = CSVJobLoader().load(jobs_dir)
@@ -39,6 +43,8 @@ class JobFitWorkflow:
         reports = []
         for job in jobs:
             jd_requirements = self.jd_parser.parse(job.text)
+            if llm_parser:
+                jd_requirements = llm_parser.enhance(job.text, jd_requirements)
             matches = self.matcher.match(jd_requirements, resume_profile, resume_text)
             score = self.scorer.score(matches)
             reports.append(JobMatchReport(

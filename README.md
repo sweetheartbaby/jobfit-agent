@@ -95,7 +95,7 @@ ReportAgent
 - [x] Evidence-based fit scoring
 - [x] Markdown / JSON reports
 - [x] HTML snapshot import
-- [ ] Optional LLM-enhanced parsing
+- [x] Optional LLM-enhanced parsing with JSON repair and rule fallback
 - [x] Fact-grounded resume tailoring suggestions
 - [ ] Streamlit web UI
 - [ ] Optional crawler adapter for public career pages
@@ -166,3 +166,18 @@ JobFit Agent 会生成 `reports/resume_tailoring.md`，但它遵守一个原则�
 - 可基于原文证据强化的项目表达
 - 不建议声称的缺失能力点
 - 面试前需要准备的数据和案例
+
+## 可选 LLM 增强模式
+
+默认模式不需要 API Key。若希望增强 JD/简历解析，可配置 OpenAI-compatible API：
+
+```bash
+export OPENAI_API_KEY=your_api_key
+python3 -m src.jobfit_agent.cli rank \
+  --resume examples/resume.md \
+  --jobs examples/jobs \
+  --output reports \
+  --llm gpt-4o-mini
+```
+
+如果 API Key 缺失、网络失败、模型输出不是 JSON，系统会自动回退到规则模式。

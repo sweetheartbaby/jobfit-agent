@@ -1,14 +1,17 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
-from .jd_parser import DIMENSIONS
+from .jd_parser import DIMENSIONS, DimensionConfig
 from ..schemas import RequirementMatch
 from ..tools.text_utils import find_evidence
 
 
 class EvidenceMatcherAgent:
+    def __init__(self, dimensions: Optional[List[DimensionConfig]] = None):
+        self.dimensions = dimensions or DIMENSIONS
+
     def match(self, jd_requirements: Dict[str, List[str]], resume_profile: Dict[str, List[str]], resume_text: str) -> List[RequirementMatch]:
         results = []
-        for dimension in DIMENSIONS:
+        for dimension in self.dimensions:
             required = jd_requirements.get(dimension.name, [])
             candidate = resume_profile.get(dimension.name, [])
             matched = sorted(set(required) & set(candidate))

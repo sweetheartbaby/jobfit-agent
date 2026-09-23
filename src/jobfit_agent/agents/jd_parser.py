@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from ..tools.text_utils import find_keywords
 
@@ -23,5 +23,8 @@ DIMENSIONS = [
 
 
 class JDParserAgent:
+    def __init__(self, dimensions: Optional[List[DimensionConfig]] = None):
+        self.dimensions = dimensions or DIMENSIONS
+
     def parse(self, jd_text: str) -> Dict[str, List[str]]:
-        return {dimension.name: find_keywords(jd_text, dimension.keywords) for dimension in DIMENSIONS}
+        return {dimension.name: find_keywords(jd_text, dimension.keywords) for dimension in self.dimensions}

@@ -219,3 +219,17 @@ python3 -m jobfit_agent.cli rank \
 ```
 
 如果 API Key 缺失、网络失败、模型输出不是 JSON，系统会自动回退到规则模式。
+
+## 配置文件
+
+可以通过 `--config` 自定义评分权重、关键词库和人工复核阈值：
+
+```bash
+PYTHONPATH=src python3 -m jobfit_agent.cli rank \
+  --resume examples/resume.md \
+  --jobs examples/jobs \
+  --output reports \
+  --config examples/jobfit.yaml
+```
+
+示例配置见 `examples/jobfit.yaml`。

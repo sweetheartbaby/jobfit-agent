@@ -1,0 +1,36 @@
+manual_review_threshold: 65
+
+scoring:
+  required_skills: 0.30
+  project_experience: 0.25
+  agent_rag: 0.20
+  engineering: 0.10
+  business: 0.10
+  background: 0.05
+
+keywords:
+  agent_rag:
+    - Agent
+    - RAG
+    - LangChain
+    - LangGraph
+    - Workflow
+    - ReAct
+    - Plan
+    - Execute
+    - Milvus
+    - 向量
+    - 检索
+    - Reranker
+    - MCP
+    - Tool Calling
+  required_skills:
+    - Python
+    - TypeScript
+    - Golang
+    - Java
+    - FastAPI
+    - Docker
+    - MySQL
+    - Redis
+    - WebSocket

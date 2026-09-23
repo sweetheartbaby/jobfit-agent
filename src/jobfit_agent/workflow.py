@@ -14,6 +14,7 @@ from .connectors.csv_loader import CSVJobLoader
 from .connectors.html_snapshot import HTMLSnapshotLoader
 from .schemas import JobMatchReport
 from .tools.text_utils import read_text
+from .config import load_config, dimensions_from_config
 
 
 class JobFitWorkflow:
@@ -27,7 +28,13 @@ class JobFitWorkflow:
         self.interview = InterviewPrepAgent()
         self.reporter = ReportAgent()
 
-    def run(self, resume_path: str, jobs_dir: str, output_dir: str, llm_model: str = None, llm_base_url: str = None) -> List[JobMatchReport]:
+    def run(self, resume_path: str, jobs_dir: str, output_dir: str, llm_model: str = None, llm_base_url: str = None, config_path: str = None) -> List[JobMatchReport]:
+        config = load_config(config_path)
+        dimensions = dimensions_from_config(config)
+        self.jd_parser = JDParserAgent(dimensions)
+        self.resume_parser = ResumeParserAgent(dimensions)
+        self.matcher = EvidenceMatcherAgent(dimensions)
+        self.scorer = FitScoringAgent(dimensions)
         resume_text = read_text(Path(resume_path))
         resume_profile = self.resume_parser.parse(resume_text)
         llm_parser = LLMParserAgent(llm_model, llm_base_url) if llm_model else None
@@ -55,7 +62,7 @@ class JobFitWorkflow:
                 gaps=self.gap_analyzer.analyze(matches),
                 resume_suggestions=self.gap_analyzer.suggestions(matches),
                 interview_questions=self.interview.generate(matches),
-                need_manual_review=score < 65 or any(m.score < 0.5 and m.required_keywords for m in matches),
+                need_manual_review=score < config.manual_review_threshold or any(m.score < 0.5 and m.required_keywords for m in matches),
             ))
         self.reporter.write(reports, output_dir)
         return sorted(reports, key=lambda r: r.fit_score, reverse=True)

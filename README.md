@@ -1,5 +1,7 @@
 # JobFit Agent
 
+[中文文档](README.zh-CN.md) | English
+
 <p align="center">
   <b>Local-first JD-resume matching and interview preparation agent.</b><br>
   Rank job descriptions by resume fit, explain the evidence, find skill gaps, and prepare interviews.
